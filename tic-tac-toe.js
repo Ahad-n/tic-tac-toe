@@ -174,7 +174,7 @@ const playGame = function(player1, player2) {
         
         if(gameStatus){
             // Switch players players after each turn
-            playerTurn = (playerTurn === player1) ? player2.value : player2.value;
+            playerTurn = (playerTurn === player1) ? player2.value : player1.value;
             moveCount++;
         }
 
@@ -207,13 +207,13 @@ function startGame() {
     input1.setAttribute('id', 'player1');
     const label1 = document.createElement('label');
     label1.setAttribute('for', 'player1');
-    label1.textContent = "Player2: ";
+    label1.textContent = "Player1: ";
     player1.append(label1, input1);
 
     const player2 = document.createElement('div');
     const  input2 = document.createElement('input');
     input2.setAttribute('type', 'text');
-    input2.setAttribute('id', 'player2');
+    input2.setAttribute('id', 'player1');
     const label2 = document.createElement('label');
     label2.setAttribute('for', 'player2');
     label2.textContent = "Player2: ";

@@ -127,18 +127,16 @@ const game = (function() {
             }
             board = createGame();
         }
+        else {
+            // Switch players players after each turn
+            if (player === 'X') player = 'O';
+            else player = 'X';
 
-        // Switch players players after each turn
-        if (player === 'X') player = 'O';
-        else player = 'X';
+            console.log(`Player ${player}'s turn`);
+        }
+
     }   
     
     const displayBoard = board.displayBoard;
     return {updateBoard, displayBoard};
 })();
-
-game.updateBoard(0, 0);
-game.updateBoard(0, 1);
-game.updateBoard(0, 2);
-game.updateBoard(1, 0);
-game.displayBoard();

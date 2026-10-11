@@ -19,14 +19,22 @@ function createGame() {
 
     // 2D array for the Gameboard
     const createBoard = function() {
-            const board = []
-            for (let i = 0; i < 3; i++) {
-                const row = []
-                for (let j = 0; j < 3; j++) {
-                    row.push(cell(i,j))
+        let board = [];
+
+            const setBoard = function() {
+                const newBoard = [];
+                for (let i = 0; i < 3; i++) {
+                    const row = []
+                    for (let j = 0; j < 3; j++) {
+                        row.push(cell(i,j))
+                    }
+                    newBoard.push(row);
                 }
-                board.push(row);
+
+                board = newBoard;
             }
+
+            setBoard();
 
             //board getter
             const viewer  = document.createElement('div');
@@ -120,7 +128,9 @@ function createGame() {
                 return gameStatus;
 
             }
-            return {displayBoard, updateCell};
+
+            const clearBoard = () => setBoard();
+            return {displayBoard, updateCell, clearBoard};
     }
 
     return createBoard();
@@ -143,8 +153,8 @@ const game = (function() {
             if (player === 'X') player = 'O';
             else player = 'X';
             moveCount++;
-            
         }
+
         if (moveCount > 4) {
             if (gameStatus.won) {
                 const winner = gameStatus.X ? 'X' : 'O';
@@ -156,7 +166,10 @@ const game = (function() {
             }
             
             if (gameStatus.won || moveCount === 9) {
-                board = null;
+                // todo: call reset game
+                board.clearBoard();
+                board.displayBoard();
+                moveCount = 0;
 
             }
         }

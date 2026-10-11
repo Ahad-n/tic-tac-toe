@@ -1,7 +1,7 @@
-//Create a game with a new board
+// Create a game with a new board
 function createGame() {
 
-    //cell facotory
+    // cell facotory
     function cell(row, column) {
         const i = row;
         const j = column;
@@ -38,13 +38,20 @@ function createGame() {
                 }
             }
 
-            //cell setter
-            const setBoardCell = function(row, column, value) {
-                board[row][column].updateValue(value);
-            } 
+            // method for updating cells
+            const updateCellByX = function(row, column) {
+                board[row][column].updateValue('X');
+            }
+            const updateCellByO = function(row, column) {
+                board[row][column].updateValue('O');
+            }
             
-            return {displayBoard, setBoardCell};
+            return {displayBoard, updateCellByX, updateCellByO};
     }
 
     return createBoard();
 }
+
+// Play game
+    // play turn
+    // reset game

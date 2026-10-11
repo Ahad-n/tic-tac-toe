@@ -29,13 +29,24 @@ function createGame() {
             }
 
             //board getter
+            const viewer  = document.createElement('div');
+            viewer.classList.add('viewer');
+            const ticTacToe = document.querySelector('.ticTacToe');
+            ticTacToe.appendChild(viewer);
+
             const displayBoard = function() {
+                // clear previous data
+                viewer.textContent = '';
+
                 for (let i = 0; i < 3; i++) {
-                    let line = '';
                     for (let j = 0; j < 3; j++) {
-                        line += board[i][j].getValue() + ', '
+                        // const cell = board[i][j];
+                        const cell = document.createElement('div');
+                        const sign = document.createElement('p');
+                        sign.textContent = board[i][j].getValue();
+                        cell.appendChild(sign);
+                        viewer.appendChild(cell);
                     }
-                    console.log(line);
                 }
             }
 
@@ -149,3 +160,16 @@ const game = (function() {
     const displayBoard = board.displayBoard;
     return {updateBoard, displayBoard};
 })();
+
+game.updateBoard(1,1);
+game.updateBoard(2, 0);
+game.updateBoard(1,0);
+
+
+
+// rendering
+
+
+// integrate with DOM interactions
+
+// clean up and allowing palyers to put their names.

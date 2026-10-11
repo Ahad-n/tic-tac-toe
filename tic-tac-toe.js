@@ -226,6 +226,10 @@ function startGame() {
     form.append(player1, player2, submit);
     dialog.appendChild(form);
     
+    const ticTacToe = document.querySelector('.ticTacToe');
+    ticTacToe.appendChild(dialog);
+    dialog.showModal();
+    
     // collect the data from the dialog
     submit.addEventListener('click', (event) => {
         event.preventDefault();
@@ -233,6 +237,7 @@ function startGame() {
         if (player2) p2.name = player2;
         
         game = playGame(p1, p2);
+        game.displayBoard();
 
         // todo: call playgame using a variable game
         // integrate with DOM interactions

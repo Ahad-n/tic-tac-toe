@@ -154,6 +154,7 @@ const playGame = function(player1, player2) {
         if (gameStatus.won) {
             const winner = gameStatus.X ? player1.name : player2.name;
             message = `${winner} WON the game!!!`
+            console.log(player1.name);
         }
         else message = 'Game is a draw';
 
@@ -162,7 +163,6 @@ const playGame = function(player1, player2) {
 
         //reset the game
         board = createGame();
-        board.displayBoard();
         moveCount = 0;
         
     }
@@ -234,12 +234,13 @@ function startGame() {
     // collect the data from the dialog
     submit.addEventListener('click', (event) => {
         event.preventDefault();
-        if (player1) p1.name = player1;
-        if (player2) p2.name = player2;
+        if (input1.value) p1.name = input1.value;
+        if (input2.value) p2.name = input2.value;
+        console.log(player2);
         dialog.close();
         
         game = playGame(p1, p2);
-        game.displayBoard();
+        // game.displayBoard();
 
         // todo: call playgame using a variable game
         // integrate with DOM interactions

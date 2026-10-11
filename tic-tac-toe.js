@@ -222,6 +222,7 @@ function startGame() {
     const submit = document.createElement('button');
     submit.classList.add('submit-btn');
     submit.setAttribute('formmethod', 'dialog');
+    submit.textContent = "submit";
     
     form.append(player1, player2, submit);
     dialog.appendChild(form);

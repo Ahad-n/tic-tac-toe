@@ -137,11 +137,35 @@ function createGame() {
 }
 
 
-const playGame = function() {
+const playGame = function(player1, player2) {
     let board = createGame();
     let player = 'X';
     let gameStatus = null;
     let moveCount = 0;
+
+    // create a function that resets the game when it is over
+    function endGame(gameStatus) {
+
+        // create an element that announces the winner and draw games
+        const finishingStatus = document.createElement('div');
+        const ticTacToe = document.querySelector('.ticTacToe');
+        let message = '';
+
+        if (gameStatus.won) {
+            const winner = gameStatus.X ? player1.name : player2.name;
+            message = `${winner} WON the game!!!`
+        }
+        else message = 'Game is a draw';
+
+        finishingStatus.textContent = message;
+        ticTacToe.appendChild(finishingStatus);
+
+        //reset the game
+        board = createGame();
+        board.displayBoard();
+        moveCount = 0;
+        
+    }
 
     board.displayBoard();
     const updateBoard = function(row, column) {
@@ -156,20 +180,8 @@ const playGame = function() {
         }
 
         if (moveCount > 4) {
-            if (gameStatus.won) {
-                const winner = gameStatus.X ? 'X' : 'O';
-                console.log(`Player ${winner} is the WINNER`);
-                
-            }
-            else if (moveCount === 9) {
-                console.log(`The game is a draw`);
-            }
-            
             if (gameStatus.won || moveCount === 9) {
-                // todo: call reset game
-                board.clearBoard();
-                board.displayBoard();
-                moveCount = 0;
+                endGame(gameStatus);
             }
         }
         
@@ -235,6 +247,7 @@ function startGame() {
         event.preventDefault();
         if (player1) p1.name = player1;
         if (player2) p2.name = player2;
-        
     });
+
+    
 }

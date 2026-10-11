@@ -48,7 +48,7 @@ function createGame() {
 
                         cell.dataset.row = i;
                         cell.dataset.column = j;
-                        
+
                         cell.appendChild(sign);
                         viewer.appendChild(cell);
                     }
@@ -134,13 +134,14 @@ const game = (function() {
     board.displayBoard();
     const updateBoard = function(row, column) {
         gameStatus = board.updateCell(row, column, player);
+        displayBoard();
         
         if(gameStatus){
             // Switch players players after each turn
             if (player === 'X') player = 'O';
             else player = 'X';
             moveCount++;
-
+            
         }
         if (moveCount > 4) {
             if (gameStatus.won) {
@@ -151,7 +152,7 @@ const game = (function() {
             else if (moveCount === 9) {
                 console.log(`The game is a draw`);
             }
-
+            
             if (gameStatus.won || moveCount === 9) {
                 board = createGame();
                 return;
@@ -159,23 +160,25 @@ const game = (function() {
         }
         
         console.log(`Next turn: ${player}`);
-        displayBoard();
-
+        
     }   
     
     const displayBoard = board.displayBoard;
     return {updateBoard, displayBoard};
 })();
 
-game.updateBoard(1,1);
-game.updateBoard(2, 0);
-game.updateBoard(1,0);
-
-
-
-// rendering
-
 
 // integrate with DOM interactions
+// add event listener for the viewer
+const viewer = document.querySelector('.viewer')
+viewer.addEventListener('click', (event) => {
+    const cell = event.target;
+    if (cell.matches('.cell')) {
+        const row = cell.dataset.row;
+        const column = cell.dataset.column;
+
+        game.updateBoard(row, column);
+    }
+});
 
 // clean up and allowing palyers to put their names.

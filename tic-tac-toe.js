@@ -120,7 +120,8 @@ const game = (function() {
 
         if (moveCount > 4 || moveCount === 9) {
             if (gameStatus.won) {
-                console.log(`Player ${gameStatus.X||gameStatus.O} is the WINNER`);
+                const winner = gameStatus.X ? 'X' : 'O';
+                console.log(`Player ${winner} is the WINNER`);
             }
             else {
                 console.log(`The game is a draw`);

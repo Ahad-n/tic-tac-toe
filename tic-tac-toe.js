@@ -139,7 +139,7 @@ function createGame() {
 
 const playGame = function(player1, player2) {
     let board = createGame();
-    let player = 'X';
+    let playerTurn = 'X';
     let gameStatus = null;
     let moveCount = 0;
 
@@ -169,13 +169,12 @@ const playGame = function(player1, player2) {
 
     board.displayBoard();
     const updateBoard = function(row, column) {
-        gameStatus = board.updateCell(row, column, player);
+        gameStatus = board.updateCell(row, column, playerTurn);
         displayBoard();
         
         if(gameStatus){
             // Switch players players after each turn
-            if (player === 'X') player = 'O';
-            else player = 'X';
+            playerTurn = (playerTurn === player1) ? player2.value : player2.value;
             moveCount++;
         }
 
@@ -184,8 +183,6 @@ const playGame = function(player1, player2) {
                 endGame(gameStatus);
             }
         }
-        
-        console.log(`Next turn: ${player}`);
         
     }   
     
@@ -247,6 +244,8 @@ function startGame() {
         event.preventDefault();
         if (player1) p1.name = player1;
         if (player2) p2.name = player2;
+
+        game = playGame(p1, p2);
     });
 
     

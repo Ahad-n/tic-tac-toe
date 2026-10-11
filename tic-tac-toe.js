@@ -55,7 +55,7 @@ function createGame() {
                 }
 
                 const updatetracker = function(row, column, value) {
-                    const valueIndex = 0;
+                    let valueIndex = 0;
                     if (value === 'O') {
                         valueIndex = 1;
                     }
@@ -73,11 +73,10 @@ function createGame() {
                     directions[rows] = ++table[rows][row][valueIndex];
                     directions[columns] = ++table[columns][column][valueIndex];
                 }
-                const maxAlinged = directions.reduce((max, value) => {
-                    return (max > value) ? max : value;
-                })
 
-                const getMaxAligned = () => maxAlinged;
+                const getMaxAligned = () => directions.reduce((max, value) => {
+                    return (max > value) ? max : value;
+                });
 
                 return {updatetracker, getMaxAligned};})();
 
@@ -107,11 +106,11 @@ function createGame() {
 }
 
 
-function playGame() {
+const game = function() {
     let board = createGame();
-    const player = 'X';
-    const moveCount = 0;
+    let player = 'X';
     let gameStatus = null;
+    let moveCount = 0;
 
     const updateBoard = function(row, column) {
         gameStatus = board.updateCell(row, column, player);
@@ -126,11 +125,12 @@ function playGame() {
             }
             board = createGame();
         }
-    }    
+
+        // Switch players players after each turn
+        if (player === 'X') player = 'O';
+        else player = 'X';
+    }   
+    
+    const displayBoard = board.displayBoard();
+    return {updateBoard, displayBoard};
 }
-
-
-// Play game
-    // play turn
-    // reset game
-

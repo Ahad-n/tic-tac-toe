@@ -125,18 +125,24 @@ const game = (function() {
             moveCount++;
 
         }
-        if (moveCount > 4 || moveCount === 9) {
+        if (moveCount > 4) {
             if (gameStatus.won) {
                 const winner = gameStatus.X ? 'X' : 'O';
                 console.log(`Player ${winner} is the WINNER`);
+                
             }
-            else {
+            else if (moveCount === 9) {
                 console.log(`The game is a draw`);
             }
-            board = createGame();
+
+            if (gameStatus.won || moveCount === 9) {
+                board = createGame();
+                return;
+            }
         }
         
-        console.log(`Player ${player}'s turn`);
+        console.log(`Next turn: ${player}`);
+        displayBoard();
 
     }   
     

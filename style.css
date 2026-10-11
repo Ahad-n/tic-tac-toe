@@ -1,0 +1,19 @@
+.viewer {
+    display: grid;
+    grid-template: repeat(3, 6rem) / repeat(3, 6rem);
+    gap: 5px;
+}
+
+.cell {
+    background-color: rgb(226, 122, 4);
+    color: #fff;
+    display: inline-block;
+    border: 2px solid blue;
+    height: 100%;
+    width: 100%;
+}
+
+.cell p {
+    text-align: center;
+    font-size: 2rem;
+}

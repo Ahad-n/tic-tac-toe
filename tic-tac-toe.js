@@ -43,6 +43,7 @@ function createGame() {
                         // const cell = board[i][j];
                         const cell = document.createElement('div');
                         const sign = document.createElement('p');
+                        cell.classList.add('cell');
                         sign.textContent = board[i][j].getValue();
                         cell.appendChild(sign);
                         viewer.appendChild(cell);

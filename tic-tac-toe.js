@@ -85,7 +85,7 @@ function createGame() {
             // method for updating cells
             const updateCell= function(row, column, value) {
                 const cell = board[row][column];
-                const gameStatus= {X:'X', O: 'O', won: false};
+                let gameStatus= {X:false, O: false, won: false};
 
                 if (!(cell.getValue())) {
                     cell.updateValue(value);
@@ -98,6 +98,7 @@ function createGame() {
                         gameStatus.won = true;
                     }
                 }
+                else gameStatus = null;
                 return gameStatus;
 
             }
@@ -128,13 +129,14 @@ const game = (function() {
             }
             board = createGame();
         }
-        else {
+        else if(gameStatus){
             // Switch players players after each turn
             if (player === 'X') player = 'O';
             else player = 'X';
 
-            console.log(`Player ${player}'s turn`);
         }
+        
+        console.log(`Player ${player}'s turn`);
 
     }   
     

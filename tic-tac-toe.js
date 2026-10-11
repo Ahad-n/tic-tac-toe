@@ -43,6 +43,8 @@ function createGame() {
                 const columns = 1;
                 const diagonals = 2;
 
+                const directions = [0, 0, 0];
+
                 const table = [];
                 for (let i = 0; i < 3; i++) {
                     const direction = [];
@@ -59,19 +61,25 @@ function createGame() {
                     }
 
                     if (row === column) {
-                        table[diagonals][0][valueIndex]++;
+                        directions[diagonals] = ++table[diagonals][0][valueIndex];
                         if (row === 1) {
-                            table[diagonals][1][valueIndex]++;
+                            directions[diagonals] = ++table[diagonals][1][valueIndex];
                         }
                     }
                     else if (Math.abs(row - column) === 2) {
-                        table[diagonals][1][valueIndex]++;
+                        directions[diagonals] = ++table[diagonals][1][valueIndex];
                     }
 
-                    table[rows][row][valueIndex]++;
-                    table[columns][column][valueIndex]++;
+                    directions[rows] = ++table[rows][row][valueIndex];
+                    directions[columns] = ++table[columns][column][valueIndex];
                 }
-                return {updatetracker};})();
+                const maxAlinged = directions.reduce((max, value) => {
+                    return (max > value) ? max : value;
+                })
+
+                const getMaxAligned = () => maxAlinged;
+
+                return {updatetracker, getMaxAligned};})();
 
 
             // method for updating cells
@@ -79,8 +87,18 @@ function createGame() {
                 const cell = board[row][column];
                 if (!(cell.getValue())) {
                     cell.updateValue(value);
-                    gametracker.updatetracker(row, column, value);                    
+                    gametracker.updatetracker(row, column, value);
+
+                    const gameStatus= {X:'X', O: 'O', won: false};
+
+                    const maxAligned = gametracker.getMaxAligned();
+                    if (maxAligned === 3) {
+                        gameStatus[value] = true;
+                        gameStatus.won = true;
+                    }
+                    return gameStatus;
                 }
+                else
             }
             return {displayBoard, updateCell};
     }

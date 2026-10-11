@@ -117,8 +117,7 @@ const game = (function() {
 
     const updateBoard = function(row, column) {
         gameStatus = board.updateCell(row, column, player);
-        moveCount++;
-
+        
         if (moveCount > 4 || moveCount === 9) {
             if (gameStatus.won) {
                 const winner = gameStatus.X ? 'X' : 'O';
@@ -128,6 +127,7 @@ const game = (function() {
                 console.log(`The game is a draw`);
             }
             board = createGame();
+            moveCount++;
         }
         else if(gameStatus){
             // Switch players players after each turn

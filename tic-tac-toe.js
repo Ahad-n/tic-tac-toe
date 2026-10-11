@@ -236,6 +236,7 @@ function startGame() {
         event.preventDefault();
         if (player1) p1.name = player1;
         if (player2) p2.name = player2;
+        dialog.close();
         
         game = playGame(p1, p2);
         game.displayBoard();

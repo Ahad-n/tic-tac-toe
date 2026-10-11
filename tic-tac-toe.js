@@ -108,8 +108,25 @@ function createGame() {
 
 
 function playGame() {
+    let board = createGame();
+    const player = 'X';
+    const moveCount = 0;
+    let gameStatus = null;
 
+    const updateBoard = function(row, column) {
+        gameStatus = board.updateCell(row, column, player);
+        moveCount++;
 
+        if (moveCount > 4 || moveCount === 9) {
+            if (gameStatus.won) {
+                console.log(`Player ${gameStatus.X||gameStatus.O} is the WINNER`);
+            }
+            else {
+                console.log(`The game is a draw`);
+            }
+            board = createGame();
+        }
+    }    
 }
 
 

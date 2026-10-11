@@ -137,7 +137,7 @@ function createGame() {
 }
 
 
-const game = (function() {
+const playGame = function() {
     let board = createGame();
     let player = 'X';
     let gameStatus = null;
@@ -170,7 +170,6 @@ const game = (function() {
                 board.clearBoard();
                 board.displayBoard();
                 moveCount = 0;
-
             }
         }
         
@@ -180,9 +179,9 @@ const game = (function() {
     
     const displayBoard = board.displayBoard;
     return {updateBoard, displayBoard};
-})();
+}
 
-
+// todo: call playgame using a variable game
 // integrate with DOM interactions
 // add event listener for the viewer
 const viewer = document.querySelector('.viewer')
@@ -197,3 +196,45 @@ viewer.addEventListener('click', (event) => {
 });
 
 // clean up and allowing palyers to put their names.
+function startGame() {
+    // create variables to collect player names with default values
+    const p1 = {name: 'X', value: 'X'};
+    const p2 = {name: 'O', value: 'O'};
+
+    // create a dialog with a form
+    const dialog = document.createElement('dialog');
+    const form = document.createElement('form');
+
+    const player1 = document.createElement('div');
+    const  input1 = document.createElement('input');
+    input1.setAttribute('type', 'text');
+    input1.setAttribute('id', 'player1');
+    const label1 = document.createAttribute('label');
+    label1.setAttribute('for', 'player1');
+    label1.textContent = "Player2: ";
+    player1.append(label1, input1);
+
+    const player2 = document.createElement('div');
+    const  input2 = document.createElement('input');
+    input2.setAttribute('type', 'text');
+    input2.setAttribute('id', 'player2');
+    const label2 = document.createAttribute('label');
+    label2.setAttribute('for', 'player2');
+    label2.textContent = "Player2: ";
+    player2.append(label2, input2);
+
+    const submit = document.createElement('button');
+    submit.classList.add('submit-btn');
+    submit.setAttribute('formmethod', 'dialog');
+    
+    form.append(player1, player2, submit);
+    dialog.appendChild(form);
+
+    // collect the data from the dialog
+    submit.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (player1) p1.name = player1;
+        if (player2) p2.name = player2;
+        
+    });
+}

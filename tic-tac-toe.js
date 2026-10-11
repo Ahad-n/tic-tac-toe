@@ -174,7 +174,7 @@ const playGame = function(player1, player2) {
         
         if(gameStatus){
             // Switch players players after each turn
-            playerTurn = (playerTurn === player1) ? player2.value : player1.value;
+            playerTurn = (playerTurn === player1.value) ? player2.value : player1.value;
             moveCount++;
         }
 

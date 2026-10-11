@@ -154,8 +154,8 @@ const game = (function() {
             }
             
             if (gameStatus.won || moveCount === 9) {
-                board = createGame();
-                return;
+                board = null;
+
             }
         }
         

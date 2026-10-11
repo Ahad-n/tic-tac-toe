@@ -68,33 +68,31 @@ function createGame() {
                         table[diagonals][1][valueIndex]++;
                     }
 
-                    table[rows][row][valueIndex];
-                    table[columns][column][valueIndex];
+                    table[rows][row][valueIndex]++;
+                    table[columns][column][valueIndex]++;
                 }
-
-                
-                return {updatetracker};
-
-            })();
+                return {updatetracker};})();
 
 
             // method for updating cells
-            const updateCellByX = function(row, column) {
-                const value = 'X';
-                board[row][column].updateValue(value);
-                gametracker.updatetracker(row, column, value);
+            const updateCell= function(row, column, value) {
+                const cell = board[row][column];
+                if (!(cell.getValue())) {
+                    cell.updateValue(value);
+                    gametracker.updatetracker(row, column, value);                    
+                }
             }
-            const updateCellByO = function(row, column) {
-                board[row][column].updateValue('O');
-                gametracker.updatetracker(row, column, value);
-            }
-            
-            return {displayBoard, updateCellByX, updateCellByO};
+            return {displayBoard, updateCell};
     }
 
     return createBoard();
 }
 
+
+function playGame() {
+
+
+}
 
 
 // Play game

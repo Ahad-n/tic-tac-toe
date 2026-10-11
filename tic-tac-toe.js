@@ -34,7 +34,7 @@ function createGame() {
                     for (let j = 0; j < 0; j++) {
                         console.log(board[i][j].getValue() + ', ');
                     }
-                    console.log('/n');
+                    console.log('\n');
                 }
             }
 

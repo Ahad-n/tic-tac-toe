@@ -5,7 +5,7 @@ function createGame() {
     function cell(row, column) {
         const i = row;
         const j = column;
-        const value = '';
+        let value = '';
 
         const getCellCoordinates = () => `$row: $j{i}, column: ${j}`;
         const getValue = () => value;
@@ -132,7 +132,9 @@ const game = (function() {
         else player = 'X';
     }   
     
-    const displayBoard = board.displayBoard();
+    const displayBoard = board.displayBoard;
     return {updateBoard, displayBoard};
 })();
 
+game.updateBoard(0, 0);
+game.displayBoard();

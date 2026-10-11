@@ -31,7 +31,7 @@ function createGame() {
             //board getter
             const displayBoard = function() {
                 for (let i = 0; i < 3; i++) {
-                    for (let j = 0; j < 0; j++) {
+                    for (let j = 0; j < 3; j++) {
                         console.log(board[i][j].getValue() + ', ');
                     }
                     console.log('\n');
@@ -137,4 +137,7 @@ const game = (function() {
 })();
 
 game.updateBoard(0, 0);
+game.updateBoard(0, 1);
+game.updateBoard(0, 2);
+game.updateBoard(1, 0);
 game.displayBoard();

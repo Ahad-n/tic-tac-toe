@@ -59,8 +59,10 @@ function createGame() {
                 const rows = 0;
                 const columns = 1;
                 const diagonals = 2;
+                const mainDiagonal = 2;
+                const secondDiagonal = 3;
 
-                const directions = [0, 0, 0];
+                const directions = [0, 0, 0, 0];
 
                 const table = [];
                 for (let i = 0; i < 3; i++) {
@@ -78,13 +80,13 @@ function createGame() {
                     }
 
                     if (row === column) {
-                        directions[diagonals] = ++table[diagonals][0][valueIndex];
-                        if (row === 1) {
-                            directions[diagonals] = ++table[diagonals][1][valueIndex];
+                        directions[mainDiagonal] = ++table[diagonals][0][valueIndex];
+                        if (row === '1') {
+                            directions[secondDiagonal] = ++table[diagonals][1][valueIndex];
                         }
                     }
-                    else if (Math.abs(row - column) === 2) {
-                        directions[diagonals] = ++table[diagonals][1][valueIndex];
+                    else if (Math.abs(Number(row) - Number(column)) === 2) {
+                        directions[secondDiagonal] = ++table[diagonals][1][valueIndex];
                     }
 
                     directions[rows] = ++table[rows][row][valueIndex];

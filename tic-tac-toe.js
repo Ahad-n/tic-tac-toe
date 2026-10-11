@@ -45,6 +45,10 @@ function createGame() {
                         const sign = document.createElement('div');
                         cell.classList.add('cell');
                         sign.textContent = board[i][j].getValue();
+
+                        cell.dataset.row = i;
+                        cell.dataset.column = j;
+                        
                         cell.appendChild(sign);
                         viewer.appendChild(cell);
                     }
@@ -127,6 +131,7 @@ const game = (function() {
     let gameStatus = null;
     let moveCount = 0;
 
+    board.displayBoard();
     const updateBoard = function(row, column) {
         gameStatus = board.updateCell(row, column, player);
         

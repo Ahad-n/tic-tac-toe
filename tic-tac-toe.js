@@ -31,10 +31,11 @@ function createGame() {
             //board getter
             const displayBoard = function() {
                 for (let i = 0; i < 3; i++) {
+                    let line = '';
                     for (let j = 0; j < 3; j++) {
-                        console.log(board[i][j].getValue() + ', ');
+                        line += board[i][j].getValue() + ', '
                     }
-                    console.log('\n');
+                    console.log(line);
                 }
             }
 

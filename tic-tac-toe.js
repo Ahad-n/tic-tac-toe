@@ -84,20 +84,21 @@ function createGame() {
             // method for updating cells
             const updateCell= function(row, column, value) {
                 const cell = board[row][column];
+                const gameStatus= {X:'X', O: 'O', won: false};
+
                 if (!(cell.getValue())) {
                     cell.updateValue(value);
                     gametracker.updatetracker(row, column, value);
 
-                    const gameStatus= {X:'X', O: 'O', won: false};
 
                     const maxAligned = gametracker.getMaxAligned();
                     if (maxAligned === 3) {
                         gameStatus[value] = true;
                         gameStatus.won = true;
                     }
-                    return gameStatus;
                 }
-                else
+                return gameStatus;
+
             }
             return {displayBoard, updateCell};
     }
@@ -106,7 +107,7 @@ function createGame() {
 }
 
 
-const game = function() {
+const game = (function() {
     let board = createGame();
     let player = 'X';
     let gameStatus = null;
@@ -133,4 +134,5 @@ const game = function() {
     
     const displayBoard = board.displayBoard();
     return {updateBoard, displayBoard};
-}
+})();
+
